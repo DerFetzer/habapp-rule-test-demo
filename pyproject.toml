@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "habapp_env"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poe.tasks]
+habapp_local   = "python -m HABApp -c config.yml" 
+test = "python run_tests.py"
+
+[tool.pyright]
+extraPaths = ["lib"]
+
+[tool.ruff]
+exclude = [
+    "rule_runner.py"
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+HABApp = "1.0.8"
+
+
+[tool.poetry.group.dev.dependencies]
+poethepoet = "^0.18.1"
+pytest = "^7.2.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
