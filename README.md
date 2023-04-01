@@ -2,7 +2,7 @@
 
 This demo shows how testing of rules is possible with HABApp 1.0.8.
 It uses the [SimpleRuleRunner](https://github.com/spacemanspiff2007/HABApp/blob/b3ace7579950f5d8d20b0eb709044533a36de37f/tests/rule_runner/rule_runner.py) from the HABApp repo.
-Inspiration and some code has been taken from nobbi123.
+Inspiration and core parts of the code have been taken from [HABAppRules](https://github.com/nobbi1991/HABAppRules) by [nobbi123](https://community.openhab.org/u/nobbi123).
 
 To make testing possible it is necessary that rule declaration and instantiation is done in separate files. That is why the rule is inside the `lib` folder.
 
