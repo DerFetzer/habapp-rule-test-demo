@@ -2,7 +2,7 @@ import logging
 
 import HABApp
 from HABApp.openhab.events import ItemStateChangedEvent, ItemStateChangedEventFilter
-from HABApp.openhab.items import NumberItem, SwitchItem
+from HABApp.openhab.items import NumberItem, StringItem, SwitchItem
 
 log = logging.getLogger("Rules.SimpleRule")
 
@@ -17,6 +17,7 @@ class SimpleRule(HABApp.Rule):
 
         self.temp = NumberItem.get_item("Temperature")
         self.heating = SwitchItem.get_item("Heating")
+        self.message = StringItem.get_item("Message")
 
         self.temp.listen_event(self.handle_temperature, ItemStateChangedEventFilter())
 
@@ -25,3 +26,4 @@ class SimpleRule(HABApp.Rule):
             self.heating.oh_send_command("ON")
         else:
             self.heating.oh_send_command("OFF")
+            self.run.soon(lambda: self.message.oh_send_command("Heating off!"))

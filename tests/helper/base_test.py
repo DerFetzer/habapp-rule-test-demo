@@ -1,11 +1,17 @@
 import unittest
 import unittest.mock
+from typing import Optional
 
-from tests.helper.rule_runner import SimpleRuleRunner
+from pendulum.datetime import DateTime
+
+from tests.helper.extended_rule_runner import TimeAwareRuleRunner
 from tests.helper.oh_item import send_command
 
 
 class BaseTest(unittest.TestCase):
+    def get_start_time(self) -> Optional[DateTime]:
+        return None
+
     def setUp(self) -> None:
         self.send_command_mock_patcher = unittest.mock.patch(
             "HABApp.openhab.items.base_item.send_command",
@@ -14,7 +20,7 @@ class BaseTest(unittest.TestCase):
         self.addCleanup(self.send_command_mock_patcher.stop)
         self.send_command_mock = self.send_command_mock_patcher.start()
 
-        self._runner = SimpleRuleRunner()
+        self._runner = TimeAwareRuleRunner(now=self.get_start_time())
         self._runner.set_up()
 
     def tearDown(self) -> None:
