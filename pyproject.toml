@@ -13,9 +13,7 @@ test = "python run_tests.py"
 extraPaths = ["lib"]
 
 [tool.ruff]
-exclude = [
-    "rule_runner.py"
-]
+select = ["E", "F", "I"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
