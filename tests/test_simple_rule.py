@@ -1,7 +1,7 @@
 from HABApp.openhab.items import NumberItem, StringItem, SwitchItem
 from pendulum import duration
 
-from lib.simple_rule import SimpleRule
+from rules.simple_rule import SimpleRule
 from tests.helper.base_test import BaseTest
 from tests.helper.oh_item import add_mock_item, item_state_change_event
 

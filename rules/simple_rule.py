@@ -1,4 +1,5 @@
 import logging
+import os
 
 import HABApp
 from HABApp.openhab.events import ItemStateChangedEvent, ItemStateChangedEventFilter
@@ -27,3 +28,7 @@ class SimpleRule(HABApp.Rule):
         else:
             self.heating.oh_send_command("OFF")
             self.run.soon(lambda: self.message.oh_send_command("Heating off!"))
+
+if not os.environ.get("__TESTING__"):
+    SimpleRule.create_instances()
+
